@@ -23,7 +23,7 @@
 
 ## 関数定義
 
-``javascript
+```javascript
 ev_preload(imgs, [opts])
 ```
 
