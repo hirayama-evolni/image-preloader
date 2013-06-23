@@ -26,6 +26,7 @@
       log("imgs is illegal.");
       return;
     }
+
     // if opts is false or, neither a function or an object, no callbacks.
     if(!opts || (!isFunction(opts) && !isObject(opts))){
       log("opts is illegal.");
@@ -54,15 +55,15 @@
 
     // utilities
     var indexOfRec = {};
-    var indexOf = function(ary, elm){
+    var indexOf = function(elm){
       // cache
       if(indexOfRec[elm] !== void 0/*undefined*/){
         return indexOfRec[elm];
       }
 
       // iterate
-      for(var i = 0; i<ary.length; i++){
-        if(ary[i] === elm){
+      for(var i = 0; i<imgs.length; i++){
+        if(imgs[i] === elm){
           indexOfRec[elm] = i;
           return i;
         }
@@ -71,8 +72,8 @@
     };
 
     var comparator = function(a, b){
-      var index_a = indexOf(imgs, a);
-      var index_b = indexOf(imgs, b);
+      var index_a = indexOf(a);
+      var index_b = indexOf(b);
 
       return (index_a < index_b) ? -1 :
         (index_a > index_b) ? 1 :
@@ -88,6 +89,7 @@
       isDone();
       isComplete();
     };
+
     var onerror = function(e){
       var src = e.srcElement.src;
       errors.push(src);
@@ -95,6 +97,7 @@
       if(error_cb) error_cb(src);
       isDone();
     };
+
     var onabort = function(e){
       var src = e.srcElement.src;
       aborts.push(src);
@@ -102,6 +105,7 @@
       if(abort_cb) abort_cb(src);
       isDone();
     };
+
     var isDone = function(){
       counter--;
       if(counter === 0 && done_cb){
@@ -113,6 +117,7 @@
                 aborts.concat().sort(comparator));
       }
     };
+
     var isComplete = function(){
       if(counter === 0 && successes.length === num_images && complete_cb){
         // all success
