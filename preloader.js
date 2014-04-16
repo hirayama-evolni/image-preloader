@@ -82,7 +82,7 @@
 
     // internal callback function
     var onload = function(e){
-      var src = e.srcElement.src;
+      var src = e.currentTarget.src;
       successes.push(src);
       log("load: "+src);
       if(success_cb) success_cb(src);
@@ -91,7 +91,7 @@
     };
 
     var onerror = function(e){
-      var src = e.srcElement.src;
+      var src = e.currentTarget.src;
       errors.push(src);
       log("error: "+src);
       if(error_cb) error_cb(src);
@@ -99,7 +99,7 @@
     };
 
     var onabort = function(e){
-      var src = e.srcElement.src;
+      var src = e.currentTarget.src;
       aborts.push(src);
       log("abort: "+src);
       if(abort_cb) abort_cb(src);
